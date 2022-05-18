@@ -11,3 +11,54 @@ const upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWYZ";
 const lowerLetters = "abcdefghijklmnopqrstuvwyz";
 const numbers = "0123456789";
 const symbols = "!@#$%^&*()_+="
+
+function getLowerCase() {
+  return lowerLetters[Math.floor(Math.random() *
+    lowerLetters.length)];
+}
+
+function getUpperCase() {
+  return upperLetters[Math.floor(Math.random() *
+    upperLetters.length)];
+}
+
+function getNumber() {
+  return numbers[Math.floor(Math.random() *
+    numbers.length)];
+}
+
+function getSymbols() {
+  return symbols[Math.floor(Math.random() *
+    symbols.length)];
+}
+
+function generatePass() {
+  const len = lenE.value;
+
+  let password = "";
+
+  if(upperE.checked) {
+    password += getUpperCase();
+  }
+
+  if(lowerE.checked) {
+    password += getLowerCase();
+  }
+
+  if(numberE.checked) {
+    password += getNumber();
+  }
+
+  if(symbolE.checked) {
+    password += getSymbols();
+  }
+
+  for(let i = password.length; i < len; i++) {
+    const x = generateX();
+    password += x;
+  }
+  pwE.innerText = password;
+}
+
+
+

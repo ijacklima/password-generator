@@ -57,8 +57,48 @@ function generatePass() {
     const x = generateX();
     password += x;
   }
-  pwE.innerText = password;
+  pwE.innerText = password
 }
 
+function generateX() {
+  const xr = [];
 
+  if(upperE.checked) {
+    xr.push(getUpperCase());
+  }
 
+  if(lowerE.checked) {
+    xr.push(getLowerCase());
+  }
+
+  if(numberE.checked) {
+    xr.push(getNumber());
+  }
+
+  if(symbolE.checked) {
+    xr.push(getSymbols());
+  }
+
+  if(xr.length === 0) return "";
+
+  return xr[Math.floor(Math.random() *
+    xr.length)];
+}
+
+generateE.addEventListener("click", generatePass);
+
+copyE.addEventListener("click", () => {
+  const textArea = document.createElement("textarea");
+  const password = pwE.innerText;
+
+  if(!password) {
+    return;
+  }
+
+  textArea.value = password;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  textArea.remove();
+  alert("Password copied to clipboard");
+});
